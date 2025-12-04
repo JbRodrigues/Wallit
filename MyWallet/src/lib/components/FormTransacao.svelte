@@ -8,7 +8,7 @@
 
     // Categorias de despesas
     const categoriasGastos = [
-        { value: "geral", label: "Geral" },
+        { value: "geral", label: "🌐 Geral" },
         { value: "alimentacao", label: "🍽️ Alimentação" },
         { value: "moradia", label: "🏠 Moradia" },
         { value: "transporte", label: "🚗 Transporte" },
@@ -18,6 +18,7 @@
         { value: "vestuario", label: "👔 Vestuário" },
         { value: "contas", label: "💡 Contas" },
         { value: "tecnologia", label: "💻 Tecnologia" },
+        { value: "streamings", label: "🎧 Streamings" },
         { value: "cuidados_pessoais", label: "💇 Cuidados Pessoais" },
         { value: "pets", label: "🐕 Pets" },
         { value: "investimentos", label: "📈 Investimentos" },
@@ -30,8 +31,9 @@
 
     // Categorias de receitas
     const categoriasReceitas = [
-        { value: "geral", label: "Geral" },
+        { value: "geral", label: "🌐 Geral" },
         { value: "salario", label: "💼 Salário" },
+        { value: "vales", label: "💳 Vales" },
         { value: "freelance", label: "🎨 Freelance" },
         { value: "negocios", label: "🏢 Negócios" },
         { value: "investimentos_renda", label: "📊 Investimentos" },
