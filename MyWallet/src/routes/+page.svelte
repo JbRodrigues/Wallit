@@ -5,7 +5,7 @@
     let valor = "";
     let tipo = "despesa";
     let filtro = "todas";
-    let categ = "all";
+    let categ = "geral";
 
     // Cálculos reativos (a mágica do Svelte!)
     $: saldo = transacoes.reduce((acc, t) => {
@@ -97,30 +97,18 @@
         <h2>Nova Transação</h2>
 
         <div class="campo">
-            <label for="descricao">Descrição</label>
-            <input
-                id="descricao"
-                type="text"
-                bind:value={descricao}
-                placeholder="Ex: Supermercado, Salário..."
-                on:keypress={(e) => e.key === "Enter" && adicionarTransacao()}
-            />
+            <label for="tipo">Categoria</label>
+            <select id="categ" bind:value={categ}>
+                <option value="geral">Geral</option>
+                <option value="academia">Academia</option>
+                <option value="saude">Saúde</option>
+                <option value="aliemntacao">Alimentação</option>
+                <option value="transporte">Transporte</option>
+                <option value="lazer">Lazer</option>
+                <option value="despesa-fixa">Despesa Fixa</option>
+                <option value="receita-fixa">Receita Fixa</option>
+            </select>
         </div>
-
-            <div class="campo">
-                <label for="tipo">Categoria</label>
-                <select id="categ" bind:value={categ}>
-                    <option value="all">Geral</option>
-                    <option value="gym">Academia</option>
-                    <option value="health">Saúde</option>
-                    <option value="food">Alimentação</option>
-                    <option value="transport">Transporte</option>
-                    <option value="leisure">Lazer</option>
-                    <option value="outcome-fixed">Despesa Fixa</option>
-                    <option value="income-fixed">Receita Fixa</option>
-                </select>
-            </div>
-
 
         <div class="campos-linha">
             <div class="campo">
@@ -145,6 +133,17 @@
             </div>
         </div>
 
+        <div class="campo">
+            <label for="descricao">Descrição (Opcional)</label>
+            <input
+                id="descricao"
+                type="text"
+                bind:value={descricao}
+                placeholder="Ex: Supermercado, Salário..."
+                on:keypress={(e) => e.key === "Enter" && adicionarTransacao()}
+            />
+        </div>
+
         <button on:click={adicionarTransacao}>Adicionar Transação</button>
     </div>
 
@@ -167,6 +166,7 @@
                     <div class="transacao {transacao.tipo}">
                         <div class="info">
                             <p class="descricao">{transacao.descricao}</p>
+                            <p class="categ">{transacao.categ}</p>
                             <p class="data">{formatarData(transacao.data)}</p>
                         </div>
                         <div class="acoes">
@@ -383,6 +383,12 @@
         margin: 0 0 0.25rem 0;
         font-weight: 600;
         color: #333;
+    }
+
+    .categ {
+        margin: 0 0 0.25rem 0;
+        font-size: 0.9rem;
+        color: #555;
     }
 
     .data {
