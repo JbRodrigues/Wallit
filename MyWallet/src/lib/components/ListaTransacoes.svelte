@@ -32,5 +32,51 @@
 </div>
 
 <style>
-    /* copie estilo */
+    .lista {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .lista-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .lista-header h2 {
+        margin: 0;
+        color: #333;
+    }
+
+    .lista-header select {
+        width: auto;
+        padding: 0.5rem 1rem;
+    }
+
+    .vazio {
+        text-align: center;
+        color: #999;
+        padding: 2rem;
+    }
+
+    .transacoes {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+        .lista-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .lista-header select {
+            width: 100%;
+        }
+    }
 </style>
