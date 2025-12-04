@@ -50,11 +50,12 @@
         margin: 0 0 0.25rem 0;
         font-weight: 600;
         color: #333;
+        font-size: 1rem;
     }
 
     .categ {
         margin: 0 0 0.25rem 0;
-        font-size: 0.9rem;
+        font-weight: 500;
         color: #555;
     }
 

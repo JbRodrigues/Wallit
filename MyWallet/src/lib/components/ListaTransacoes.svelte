@@ -68,6 +68,20 @@
         gap: 0.75rem;
     }
 
+    select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+        box-sizing: border-box;
+    }
+    select:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+
     @media (max-width: 768px) {
         .lista-header {
             flex-direction: column;
