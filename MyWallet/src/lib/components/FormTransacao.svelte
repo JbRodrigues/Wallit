@@ -5,6 +5,7 @@
     let valor = "";
     let tipo = "receita";
     let categ = "geral";
+    let data = new Date().toISOString().split("T")[0];
 
     // Categorias de despesas
     const categoriasGastos = [
@@ -64,7 +65,7 @@
             valor: parseFloat(valor),
             tipo,
             categ,
-            data: new Date().toISOString().split("T")[0],
+            data: data,
         });
 
         descricao = "";
@@ -85,16 +86,16 @@
         <h1>Nova Transação</h1>
     </div>
 
-    <div class="campos-linha">
-        <div class="campo">
-            <!-- svelte-ignore a11y_label_has_associated_control -->
-            <label>Tipo</label>
-            <select bind:value={tipo}>
-                <option value="receita">💰 Receita</option>
-                <option value="despesa">💸 Despesa</option>
-            </select>
-        </div>
+    <div class="campo">
+        <!-- svelte-ignore a11y_label_has_associated_control -->
+        <label>Tipo</label>
+        <select bind:value={tipo}>
+            <option value="receita">💰 Receita</option>
+            <option value="despesa">💸 Despesa</option>
+        </select>
+    </div>
 
+    <div class="campos-linha">
         <div class="campo">
             <!-- svelte-ignore a11y_label_has_associated_control -->
             <label>Valor (R$)</label>
@@ -104,6 +105,11 @@
                 step="0.01"
                 placeholder="0,00"
             />
+        </div>
+
+        <div class="campo">
+            <label for="data">Data</label>
+            <input id="data" type="date" bind:value={data} />
         </div>
     </div>
 
