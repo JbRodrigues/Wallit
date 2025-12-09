@@ -1,13 +1,33 @@
 <script>
     import { transacoes } from "$lib/stores/transacoes";
+    import { TicketPlusIcon } from "lucide-svelte";
     import TransacaoItem from "./TransacaoItem.svelte";
 
     let filtro = "todas";
+    let dataInicial = new Date(
+        new Date().getFullYear(),
+        new Date().getMonth(),
+        1,
+    )
+        .toISOString()
+        .split("T")[0];
+    let dataFinal = new Date().toISOString().split("T")[0];
 
-    $: filtradas =
-        filtro === "todas"
-            ? $transacoes
-            : $transacoes.filter((t) => t.tipo === filtro);
+    $: filtradas = $transacoes.filter((t) => {
+        // Validação 1: Tipo
+        const passaTipo = filtro === "todas" || t.tipo === filtro;
+
+        // Validação 2: Data inicial
+        const passaDataInicial = dataInicial === "" || t.data >= dataInicial;
+
+        // Validação 3: Data final
+        const passaDataFinal = dataFinal === "" || t.data <= dataFinal;
+
+        // Retorna true SOMENTE se passar em TODAS
+        return passaTipo && passaDataInicial && passaDataFinal;
+    });
+
+    console.log(filtradas);
 </script>
 
 <div class="lista">
@@ -28,11 +48,32 @@
             </svg>
             <h2>Transações</h2>
         </div>
-        <select bind:value={filtro}>
+        <select class="campo tipo" bind:value={filtro}>
             <option value="todas">Todas</option>
             <option value="receita">Receitas</option>
             <option value="despesa">Despesas</option>
         </select>
+    </div>
+
+    <div class="campos-linha">
+        <div class="campo">
+            <label for="dataInicial">Data Inicial:</label>
+            <input
+                class="data"
+                id="dataInicial"
+                type="date"
+                bind:value={dataInicial}
+            />
+        </div>
+        <div class="campo">
+            <label for="dataFinal">Data Final:</label>
+            <input
+                class="data"
+                id="dataFinal"
+                type="date"
+                bind:value={dataFinal}
+            />
+        </div>
     </div>
 
     {#if filtradas.length === 0}
@@ -47,6 +88,24 @@
 </div>
 
 <style>
+    .data {
+        width: 90%;
+        padding: 0.75rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+        box-sizing: border-box;
+    }
+    .campos-linha {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    .campo {
+        margin-bottom: 1rem;
+    }
+
     .transactions-header {
         display: flex;
         align-items: center;
